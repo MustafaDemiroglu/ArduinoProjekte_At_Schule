@@ -33,18 +33,12 @@ int cursorPos = 0;
 String openAnzeige = "Wilkommen";
 String closeAnzeige = "Code?";
 String fehlerAnzeige = "4-stelliger code";
-String falscherCodeanzeige = "falsch Code!";
-
-// TO-DO --> wechselAnzeige()
-
+String falscherCodeAnzeige = "falsch Code!";
 
 // ##### Servo-Motor ######
 Servo servo;
 int servoOpen = 0;
 int servoClose = 90;
-
-// TO-DO  --> motorLaerm
-
 
 // ##### PIEZO ######
 int piezo = 13;
@@ -57,6 +51,20 @@ int gruenLED = 11;
 String passwort;
 String eingabe;
 boolean open = true;
+
+// ##### einige Methoden #####
+void wechselAnzeige(String anzeige) {
+  display.clear();
+  display.print(anzeige);
+  cursorPos = 0;
+}
+
+// motorLaerm
+void knatter() {
+  digitalWrite(piezo, HIGH);
+  delay(2000);
+  digitalWrite(piezo, LOW);
+}
 
 
 void setup()
@@ -85,12 +93,12 @@ void loop()
   
   // Safe ist offen und wartet auf Eingabe Passwort zum Verrigeln
   // Zulässig 0-9 und a-D
-  if(open and Taste !="*" and Taste !="#") {
+  if(open and Taste !='*' and Taste !='#') {
     if(Taste and eingabe.length() <= 4){
       // display Zeile eintellen
       display.setCursor(cursorPos, 1);
       // gedrückte auf Dispaly anzeigen
-      diplay.print(Taste);
+      display.print(Taste);
       // gedrückte auf Display schieben  
       cursorPos = cursorPos + 1;
       // eingabe merken und in eingabe speichern
@@ -99,15 +107,15 @@ void loop()
   } //Passwort ist in Eingabe gespeichert
   
   // Passwort  betätigen mit * --> Safe wird verriegelt
-  if(Taste=="*"){
-    if(eingabe.length == 4){
+  if(Taste=='*'){
+    if(eingabe.length() == 4){
       passwort = eingabe;
       eingabe = "";
       
       // Motor Verriegelt Tür
       servo.write(servoClose);
       // Motorgräuscht
-      motorLaerm();
+      knatter();
       
       // Anzeige wechseln --> von willkommen auf Code?
       wechselAnzeige(closeAnzeige);
@@ -128,6 +136,61 @@ void loop()
       
       
     }
+  } // Ende safe verriegeln
+  
+  // Zustand Safe verriegelt
+  if (!open and Taste !='*' and Taste !='#'){
+    if(Taste and eingabe.length() <= 4){
+      // display Zeile eintellen
+      display.setCursor(cursorPos, 1);
+      // gedrückte auf Dispaly anzeigen
+      display.print(Taste);
+      // gedrückte auf Display schieben  
+      cursorPos = cursorPos + 1;
+      // eingabe merken und in eingabe speichern
+      eingabe = eingabe + Taste;
+    }
   }
+  
+  // aktuelle Eingabe mit Passwort vergleichen
+  if (passwort == eingabe and !open){
+    // Motor entriegeln
+    servo.write(servoOpen);
+    // Motorgeräusch
+    knatter();
+    delay(500);
+    wechselAnzeige(openAnzeige);
+    // LED rot aus; grün an
+    digitalWrite(rotLED, LOW);
+    digitalWrite(gruenLED, HIGH);
+    
+    passwort = "";
+    eingabe = "";
+    open = true;
+  } // Safe offen  --> Startposition
+  
+  // bei falschem Code
+  if(!open and passwort.length() == 4 and eingabe.length() == 4 and passwort != eingabe){
+    wechselAnzeige(falscherCodeAnzeige);
+    eingabe = "";
+    delay(500);
+    wechselAnzeige(closeAnzeige);
+  }
+  
+  // Eingabe zurücksetzen --> vertippt #
+  if(Taste =='#'){
+    eingabe = "";
+    display.clear();
+    if(open){
+      display.print(openAnzeige);
+    } else {
+      display.print(closeAnzeige);
+    }
+    cursorPos = 0;
+  }
+  
+  // TO Do ----> Aufgabe: Masterpasswort, max. Fehlersuche --> Rezeption kontaktieren
+  
+  
 } // Ende Loop
   
