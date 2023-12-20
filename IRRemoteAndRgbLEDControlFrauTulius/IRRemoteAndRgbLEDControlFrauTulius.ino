@@ -1,11 +1,8 @@
 #include <IRremote.h>
 //Define Pins
 int redLed = 5;
-int yellowLed = 4;
 int greenLed = 3;
-int blueLed = 2;
-int whiteLed = 6;
-int motor = 10;
+int blueLed = 4;
 int RECV_PIN = 11;
 //IR Library stuff
 IRrecv irrecv(RECV_PIN);
@@ -16,11 +13,9 @@ void setup()
 {
   //Set Led Pins
   pinMode(redLed, OUTPUT);
-  pinMode(yellowLed, OUTPUT);
   pinMode(greenLed, OUTPUT);
   pinMode(blueLed, OUTPUT);
-  pinMode(whiteLed, OUTPUT);
-  pinMode(motor, OUTPUT);
+  
   //Enable serial usage and IR signal in
   Serial.begin(9600);
   Serial.println("Enabling IRin");
@@ -33,40 +28,24 @@ void loop() {
     unsigned int value = results.value; //Get the value of results as an unsigned int, so we can use switch case
     Serial.println(value);
     switch (value) {
-      case 2295: //button 1
+      case 2295: 
       	digitalWrite(redLed, HIGH);
       	delay(500);
       	digitalWrite(redLed, LOW);
       	break;
       
-      case 34935: //button 2
-      	digitalWrite(yellowLed, HIGH);
+      case 34935:
+      	digitalWrite(blueLed, HIGH);
       	delay(500);
-      	digitalWrite(yellowLed, LOW);
-      	break;
+      	digitalWrite(blueLed, LOW);
       
-      case 18615: //button 3
+      case 18615:
       	digitalWrite(greenLed, HIGH);
       	delay(500);
       	digitalWrite(greenLed, LOW);
       	break;
       
-      case 10455: //button 4
-      	digitalWrite(blueLed, HIGH);
-      	delay(500);
-      	digitalWrite(blueLed, LOW);
-      	break;
-      case 43095:
-      	digitalWrite(whiteLed, HIGH);
-      	delay(500);
-      	digitalWrite(whiteLed, LOW);
-      	break;
-      case 12495:
-      	digitalWrite(motor, HIGH);
-      	delay(1000);
-      	digitalWrite(motor, LOW);
-      	delay(10);
-      	break;
+      
     }
     
     
