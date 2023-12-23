@@ -1,10 +1,11 @@
 // C++ code
-//
+// fest code
 void setup()
 {
   pinMode(10, OUTPUT);
 }
 
+// schleife
 void loop()
 {
   digitalWrite(10, HIGH);
