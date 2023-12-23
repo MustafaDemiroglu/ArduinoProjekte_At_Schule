@@ -1,7 +1,9 @@
 // C++ code
-//
+// Bibliothek
 
 # include <Servo.h>
+
+// Variable
 Servo motor;  
 
 void setup()
