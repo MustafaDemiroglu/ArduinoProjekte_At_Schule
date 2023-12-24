@@ -1,5 +1,5 @@
 // C++ code
-//
+// Variablen
 int ledRot = 5;
 int ledGruen = 3;
 int ledBlau = 4;
