@@ -1,4 +1,6 @@
+// Library
 #include <IRremote.h>
+
 //Define Pins
 int redLed = 5;
 int yellowLed = 4;
@@ -7,6 +9,7 @@ int blueLed = 2;
 int whiteLed = 6;
 int motor = 10;
 int RECV_PIN = 11;
+
 //IR Library stuff
 IRrecv irrecv(RECV_PIN);
 decode_results results;
