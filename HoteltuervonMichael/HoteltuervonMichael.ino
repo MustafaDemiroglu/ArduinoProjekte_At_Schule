@@ -35,16 +35,10 @@ String closeAnzeige = "Code?";
 String fehlerAnzeige = "4-stelliger code";
 String falscherCodeanzeige = "falsch Code!";
 
-// TO-DO --> wechselAnzeige()
-
-
 // ##### Servo-Motor ######
 Servo servo;
 int servoOpen = 0;
 int servoClose = 90;
-
-// TO-DO  --> motorLaerm
-
 
 // ##### PIEZO ######
 int piezo = 13;
