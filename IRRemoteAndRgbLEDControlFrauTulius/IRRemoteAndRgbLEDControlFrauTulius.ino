@@ -1,13 +1,14 @@
+// das Projekt haben wir noch nie versucht. Frau Tulius hat uns nur gezeigt
 // import Library
 #include <IRremote.h>
 
-//Define Pins
+// Define Pins
 int redLed = 5;
 int greenLed = 3;
 int blueLed = 4;
 int RECV_PIN = 11;
 
-//IR Library stuff
+// IR Library stuff
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
@@ -27,8 +28,10 @@ void setup()
 }
 
 void loop() {
-  if (irrecv.decode(&results)) {//irrecv.decode(&results) returns true if anything is recieved, and stores info in varible results
-    unsigned int value = results.value; //Get the value of results as an unsigned int, so we can use switch case
+  if (irrecv.decode(&results)) {
+    //irrecv.decode(&results) returns true if anything is recieved, and stores info in varible results
+    unsigned int value = results.value; 
+    //Get the value of results as an unsigned int, so we can use switch case
     Serial.println(value);
     switch (value) {
       case 2295: 
