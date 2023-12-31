@@ -1,5 +1,5 @@
 // C++ code
-// Variablen
+// Variablen deklarieren und initialisieren
 int eingang = A0; // das Wort "eingang" steht jetzt für den Wert "A0" (Bezeichnung vom Analogport 0) 
 int LED = 13; // das wort "LED" steht jetzt für den Wert 13 
 int sensorwert=0; // Variable für den Sensorwert mit 0 als Startwert 
