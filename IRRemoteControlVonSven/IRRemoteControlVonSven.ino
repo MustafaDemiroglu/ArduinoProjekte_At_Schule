@@ -1,10 +1,11 @@
+// Ein Projekt von Sven. nur zum Lernen und üben
 #include <IRremote.h>
-//Define Pins
+// Define Pins
 int redLed = 5;
 int greenLed = 3;
 int blueLed = 4;
 int RECV_PIN = 11;
-//IR Library stuff
+// IR Library stuff
 IRrecv irrecv(RECV_PIN);
 decode_results results;
 
