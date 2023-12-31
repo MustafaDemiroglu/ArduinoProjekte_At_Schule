@@ -1,3 +1,5 @@
+// Ein Projekt, das wir im Unterricht mit Frau Tulius zusammen gemacht haben, dass Michael einn bisschen geändert hat
+
 // C++ code
 
 // Bibliotheken importieren
