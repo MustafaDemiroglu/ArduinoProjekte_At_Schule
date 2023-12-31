@@ -1,15 +1,20 @@
 // C++ code
-//
+
+// import Libraries
 #include <Servo.h>
-
-Servo servo;
-
 #include <Keypad.h>
-
 #include <Adafruit_LiquidCrystal.h>
 
-Adafruit_LiquidCrystal lcd(0);
+// Variablen
+Servo servo;
+char taste;
+String zahlenFolge;
+String passwort = "1234";
+int ledRot = 10;
+int ledGruen = 11;
 
+// LCD
+Adafruit_LiquidCrystal lcd(0);
 const byte COLS = 4;
 const byte ROWS = 4;
 char hexaKeys[ROWS][COLS]= {
@@ -20,16 +25,6 @@ char hexaKeys[ROWS][COLS]= {
 };
 byte colPins[COLS] = {2,3,4,5};
 byte rowPins[ROWS] = {6,7,8,9};
-
-char taste;
-
-String zahlenFolge;
-
-String passwort = "1234";
-
-int ledRot = 10;
-int ledGruen = 11;
-
 Keypad tastenfeld = Keypad(makeKeymap(hexaKeys), rowPins, colPins, ROWS, COLS);
 
 void motorSteuerung()
