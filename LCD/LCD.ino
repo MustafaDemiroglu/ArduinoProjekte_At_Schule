@@ -1,5 +1,5 @@
 // C++ code
-//
+// Variable deklarieren
 #include <Keypad.h>
 const byte COLS = 4;
 const byte ROWS = 4;
